@@ -80,21 +80,15 @@ int main(){
      cout << fileInput;
     
     
-}
 
 
 
 
-
-
-
-    /*
 //Separate Input File
     int line = 0;
     string teststring = " ";
     string stringarray[100];
-    while(codeFile.good() )
-    {
+    while(codeFile.good()){
         getline (codeFile, teststring, ' ');
         if(teststring!= " "){
             stringarray[line]=teststring;
@@ -108,7 +102,8 @@ int main(){
     for (int k=0;k<line;k++)
         cout<<stringarray[k]<<endl;
     return 0;
-} */
+}
+            
     /*
 //LOOP THROUGH FILE
     bool checkKeywords(string teststring);
