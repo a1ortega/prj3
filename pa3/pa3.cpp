@@ -31,31 +31,11 @@ int main(){
     stack<string> beginEndStack;
     stack<string> parenthesisStack;
     
-  /*
-   
-   for(;;){
-        char cPick;
-        cout<<"Would you like to add new string y/n->";
-        cin>>cPick;
-        if(cPick=='n') break;
-   
-        string sTemp;
-        cin>>sTemp;
-        keywordStack.emplace(sTemp);
-        cout<<endl;
-    }
 
-    while(!keywordStack.empty()){
-        string sTemp;
-        //FIRST WE TAKE COPY AND THEN WE TAKE FROM TOP OF THE STRING
-        sTemp=keywordStack.top();
-        keywordStack.pop();
-        cout<<sTemp<<endl;
-    }
-    */
+    
 //Get User Input
     string input = " ";
-    cout << "Enter the file name (including the .txt) : ";
+    cout << "Enter the name of the input file (including the .txt) : ";
     cin >> input;
     
     //DEBUG - check if input was successfully passed from getInput() to main
@@ -74,34 +54,41 @@ int main(){
         }
    
     
-    /*
-    string program = " ";
-    getline(codeFile,program, (char) codeFile.eof());
-    cout << program;
-    
-    */
-    
     int line = 0;
     string teststring = " ";
     string stringarray[100];
     
-
     
-    while(codeFile.good()){
-        getline (codeFile, teststring, ' ');
-        if(teststring!=""){
+    
+    while (codeFile.good()){
+        codeFile >> teststring;
+    
+        if(teststring!="" && teststring[0]!='\n' && teststring[0] != 9 && teststring[0] != 10 && teststring[0] != 32 && teststring[0]!=' '
+           && teststring!=" "){
             stringarray[line]=teststring;
-           // cout << stringarray[line] << endl;
             line++;
         }
+        teststring = "";
     }
     
-    //output whole array with spaces between each word
+    
+   /* //output whole array with spaces between each word
     cout<<"\nArray contents:\n";
     for (int k=0;k<100;k++)
-        cout<<stringarray[k]<<" ";
+        cout<<stringarray[k]<< endl;
+    */
     
-    for (int j=0;j<100;j++){
+    
+  /*  cout<<"\nArray contents Parsed:\n";
+    for (int k=0;k<100;k++)
+        cout<<stringarray[k]<< endl;
+    */
+    
+     
+     
+    //SORT THROUGH ARRAY
+    
+   for(int j=0;j<100;j++){
         if(syntax.checkKeywords(stringarray[j])==true){
             keywordStack.emplace(stringarray[j]);
         }
@@ -126,30 +113,55 @@ int main(){
     }
 
 
- //GENERATE OUTPUT
-  
+//GENERATE OUTPUT
     cout << endl << endl;
     
     cout << "Keyword(s): ";
+   
     if(keywordStack.empty()){
         cout << "NA";
     }
     else{
+        
+        string keywordPrint[3] = { " ", " ", " ",};
+        
+        
         while(!keywordStack.empty()){
             string temp;
             temp=keywordStack.top();
+            
+            bool duplicate = false;
+            
+            for(int i=0;i<3;i++){
+                if(temp == keywordPrint[i]){
+                    duplicate = true;
+                }
+            }
+            
+            if(duplicate == false){
+                for(int i=0;i<3;i++){
+                    if(" " == keywordPrint[i]){
+                        keywordPrint[i] = temp;
+                        break;
+                    }
+                }
+            }
             keywordStack.pop();
-            cout<<temp<< " ";
         }
+        for(int i=0; i<3;i++){
+            cout << keywordPrint[i] << " " ;
+        }
+    
     }
     
-    cout << endl;
-    
+cout << endl;
+    /*
     cout << "Identifier(s): ";
-    if(syntaxErrors.empty()){
+    if(identifierStack.empty()){
         cout << "NA";
     }
     else{
+        
         while(!identifierStack.empty()){
             string temp;
             temp=identifierStack.top();
@@ -157,9 +169,61 @@ int main(){
             cout<<temp<< " ";
         }
     }
+    cout << endl;
+    cout << "Constant(s): ";
+    if(syntaxErrors.empty()){
+        cout << "NA";
+    }
+    else{
+        while(!constantStack.empty()){
+            string temp;
+            temp=constantStack.top();
+            constantStack.pop();
+            cout<<temp<< " ";
+        }
+    }
+    */
+    /*
+    cout << "Identifier(s): ";
+    if(identifierStack.empty()){
+        cout << "NA";
+    }
+    else{
+        string identifierPrint[100] = {};
+        
+        
+        while(!identifierStack.empty()){
+            string temp;
+            temp=identifierStack.top();
+            
+            bool duplicate = false;
+            
+            for(int i=0;i<3;i++){
+                if(temp == identifierPrint[i]){
+                    duplicate = true;
+                }
+            }
+            
+            if(duplicate == false){
+                for(int i=0; i<100; i++){
+                    if(" " == identifierPrint[i]){
+                        identifierPrint[i] = temp;
+                        break;
+                    }
+                }
+            }
+            keywordStack.pop();
+        }
+        for(int i=0; i<100;i++){
+            cout << identifierPrint[i] << " " ;
+        }
+    }
     
     cout << endl;
+    */
     
+    /* 
+     
     cout << "Constant(s): ";
     if(syntaxErrors.empty()){
         cout << "NA";
@@ -194,6 +258,7 @@ int main(){
         cout << "NA";
     }
     else{
+        
         while(!delimiterStack.empty()){
             string temp;
             temp=delimiterStack.top();
@@ -218,28 +283,9 @@ int main(){
     }
     
     cout << endl;
+    
+    */
   
 }
 
 
-
-
-
-/*
- 
-
-            
- 
-//LOOP THROUGH FILE
-    bool checkKeywords(string teststring);
-    bool checkIdentifiers(string teststring);
-    bool checkDelimiters(string teststring);
-    bool checkOperators(string teststring);
- 
-    bool checkBeginEnd(string teststring);
-    bool checkParenthesis(string teststring);
-//GENERATE OUTPUT
-    
-    
-    return 0; */
-// }

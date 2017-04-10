@@ -116,17 +116,41 @@ public:
     
     
     bool checkIdentifiers(string input){
-        return true;
+        int flag =0;
+        for(int i=0; i<input.length(); i++){
+            if(input.at(i) <=97 || input.at(i) >=122){
+                flag++;
+            }
+            else
+                continue;
+        }
         
-        //lowercase strings
+        if(flag==0){
+            return true;
+            }
+        else
+            return false;
+        
     }
     
     bool checkConstants(string input){
-        return true;
+        int flag =0;
+        for(int i=0; i<input.length(); i++){
+            if(input.at(i) <=48 || input.at(i) >=57){
+                flag++;
+            }
+            else
+                continue;
+        }
         
+        if(flag==0){
+            return true;
+        }
+        else
+            return false;
         
-        //if integer
     }
+
     
     
 };
