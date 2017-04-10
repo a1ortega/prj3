@@ -22,17 +22,6 @@ class Syntax{
     
 public:
     
-    
-    string getInput(){
-        string input = " ";
-        cout << "GetInput :" << endl;
-        getline(cin, input);
-        
-        return input;
-    }
-    
-   
-    
 
     bool checkKeywords(string input){
         string keywords[] = { "BEGIN", "END", "FOR" };

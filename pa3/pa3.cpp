@@ -104,7 +104,7 @@ int main(){
 
 
             
-    /*
+ 
 //LOOP THROUGH FILE
     bool checkKeywords(string teststring);
      
