@@ -70,43 +70,44 @@ int main(){
             cout << "File Open Failed - Program Terminating" << endl;
             exit(9);
         }
+   
+    string program = " ";
     
+    getline(codeFile,program, (char) codeFile.eof());
+    
+    cout << program;
+    
+}
+
+    /*
     string fileInput = " ";
 
-    while(!codeFile.eof()){
+    while(codeFile.good()){
     codeFile >> noskipws >> fileInput;
     }
     
      cout << fileInput;
     
     
-
-
-
-
-//Separate Input File
-    int line = 0;
-    string teststring = " ";
-    string stringarray[100];
-    while(codeFile.good()){
-        getline (codeFile, teststring, ' ');
-        if(teststring!= " "){
-            stringarray[line]=teststring;
-            cout << stringarray[line] << endl;
-            line++;
-        }
+    string testString = " ";
+    if(syntax.checkOperators(testString)==true){
+        operatorStack.emplace(testString);
+        
     }
     
-    //output whole array with spaces between each word
-    cout<<"\nArray contents:\n";
-    for (int k=0;k<line;k++)
-        cout<<stringarray[k]<<endl;
-    return 0;
-}
+    */
+
+
+
+
+/*
+
+
             
     /*
 //LOOP THROUGH FILE
     bool checkKeywords(string teststring);
+     
     bool checkMath(string teststring);
     bool checkDelimiters(string teststring);
     bool checkOperators(string teststring);
