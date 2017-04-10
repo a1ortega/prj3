@@ -43,28 +43,11 @@ public:
     } //end of bool checkKeywords
     
     
-    bool checkMath(string input){
-        string math[] = {"+","-","/","%","*"};
-        int mathCheck = 0;
-        
-        for(int i=0;i<5;i++){
-            if(input == math[i]){
-                mathCheck = 1;
-                break;
-            }
-        }
-        
-        if(mathCheck == 1){
-            return true;
-        }
-        else
-            return false;
 
-    } //end of bool 'checkMath'
     
     
     bool checkOperators(string input){
-        string operators[] = {"=","==","!=",">=","<=",">","<","&&","||"};
+        string operators[7] = {"=","++","+","-","/","%","*"};
         int operatorsCheck = 0;
         
         for(int i=0;i<9;i++){
