@@ -60,26 +60,75 @@ int main(){
     
     //DEBUG - check if input was successfully passed from getInput() to main
     //cout << input << endl;
-   
+    
+    cout << endl;
 //OPEN FILE -- checks if valid file name
     ifstream codeFile;
     codeFile.open(input);
         if(codeFile.is_open()){
-            cout << "File Open Success" << endl;
+            cout << "*File Open Success*" << endl << endl;
         }
         else{
-            cout << "File Open Failed - Program Terminating" << endl;
+            cout << "File Open Failed - Program Terminating" << endl << endl;
             exit(9);
         }
    
+    
+    /*
     string program = " ";
     getline(codeFile,program, (char) codeFile.eof());
     cout << program;
     
+    */
     
+    int line = 0;
+    string teststring = " ";
+    string stringarray[100];
     
+
     
+    while(codeFile.good()){
+        getline (codeFile, teststring, ' ');
+        if(teststring!=""){
+            stringarray[line]=teststring;
+           // cout << stringarray[line] << endl;
+            line++;
+        }
+    }
+    
+    //output whole array with spaces between each word
+    cout<<"\nArray contents:\n";
+    for (int k=0;k<100;k++)
+        cout<<stringarray[k]<<" ";
+    
+    for (int j=0;j<100;j++){
+        if(syntax.checkKeywords(stringarray[j])==true){
+            keywordStack.emplace(stringarray[j]);
+        }
+        else
+            if(syntax.checkIdentifiers(stringarray[j])==true){
+                identifierStack.emplace(stringarray[j]);
+            }
+         else
+             if(syntax.checkConstants(stringarray[j])==true){
+                 constantStack.emplace(stringarray[j]);
+             }
+            else
+                if (syntax.checkOperators(stringarray[j])==true){
+                    operatorStack.emplace(stringarray[j]);
+                }
+            else
+                if(syntax.checkDelimiters(stringarray[j])==true){
+                    delimiterStack.emplace(stringarray[j]);
+                }
+            else
+                syntaxErrors.emplace(stringarray[j]);
+    }
+
+
  //GENERATE OUTPUT
+  
+    cout << endl << endl;
     
     cout << "Keyword(s): ";
     if(keywordStack.empty()){
@@ -153,7 +202,7 @@ int main(){
         }
     }
     
-    cout << endl;
+    cout << endl << endl;
     
     cout << "Syntax Error(s): ";
     if(syntaxErrors.empty()){
@@ -168,6 +217,8 @@ int main(){
         }
     }
     
+    cout << endl;
+  
 }
 
 

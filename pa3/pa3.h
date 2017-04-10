@@ -24,11 +24,8 @@ public:
     
 
     bool checkKeywords(string input){
-        string keywords[] = { "BEGIN", "END", "FOR" };
+        string keywords[3] = { "BEGIN", "END", "FOR" };
         int keywordCheck=0;
-        if(input[0]<=97 && input[0]>=122)
-            return false;
-       
         for(int i=0;i<3;i++){           //loops though keyword list
             if(input == keywords[i]){
                 keywordCheck = 1;
@@ -50,7 +47,7 @@ public:
         string operators[7] = {"=","++","+","-","/","%","*"};
         int operatorsCheck = 0;
         
-        for(int i=0;i<9;i++){
+        for(int i=0;i<7;i++){
             if(input == operators[i]){
                 operatorsCheck = 1;
                 break;
@@ -70,7 +67,7 @@ public:
         string delimiters[] = {"(",")","{","}",",",":",";"};
         int delimitersCheck = 0;
         
-        for(int i=0;i<5;i++){
+        for(int i=0;i<7;i++){
             if(input == delimiters[i]){
                 delimitersCheck = 1;
                 break;
@@ -118,16 +115,19 @@ public:
     }
     
     
-    void checkIdentifiers(){
+    bool checkIdentifiers(string input){
+        return true;
         
+        //lowercase strings
     }
     
-    void checkConstants(){
+    bool checkConstants(string input){
+        return true;
         
-    }
-    void checkSyntaxErrors(){
         
+        //if integer
     }
+    
     
 };
 
